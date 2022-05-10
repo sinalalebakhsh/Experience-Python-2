@@ -1,0 +1,30 @@
+from cgitb import text
+import tkinter as tk
+from unicodedata import name
+window =  tk.Tk()
+
+write_user_input = tk.Entry(
+    master=window ,
+
+)
+
+show_user_input = tk.Label(
+    master=window ,
+)
+
+def get_than_print():
+    show_user_input['text'] = write_user_input.get()
+    
+
+tap_the_buttom = tk.Button(
+    master=window ,
+    text='*Click here*' ,
+    command=get_than_print ,
+)
+
+
+write_user_input.pack()
+tap_the_buttom.pack()
+show_user_input.pack()
+
+window.mainloop()
