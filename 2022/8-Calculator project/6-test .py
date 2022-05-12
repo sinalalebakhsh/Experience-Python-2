@@ -1,7 +1,7 @@
 def equal_operator():
     with open('memory.txt' , 'r') as memory:
         get_memory = memory.read()
-        memory_list = get_memory.split('\n') # 
+        memory_list = get_memory.split('\n') # ['77', '+', '3', '+', '1', '+', '1']
         return memory_list
         # finall_list = [] # 
         # finall_number = 0.0  # 
