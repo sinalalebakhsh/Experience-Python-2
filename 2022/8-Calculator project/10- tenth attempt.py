@@ -1,5 +1,6 @@
 import tkinter as tk
 from functions_project import clear_1
+clear_1()
 from functions_project import duplicate_checker
 
 

@@ -1,3 +1,14 @@
-list_ = [1,2,3,4,5,6,'+','']
+import tkinter as tk
 
-print(list_[-2])
+window = tk.Tk()
+
+lbl_show_numbers_and_operator = tk.Label(
+    master=window,
+)
+lbl_show_numbers_and_operator.pack()
+
+lbl_show_numbers_and_operator['text'] = '123+'
+
+print(lbl_show_numbers_and_operator)
+
+window.mainloop()

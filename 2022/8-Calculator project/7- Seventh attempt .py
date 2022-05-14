@@ -1,17 +1,23 @@
-from cgitb import text
 import tkinter as tk
+# from functions_project import 
+
+
+
 
 window = tk.Tk()
-
+with open('memory.txt' , 'w') as memory:
+    memory.write("0")
 flag_1 = 0
 number_value = None
-
 
 lbl_numbers_and_operator = tk.Label(
     master=window ,
     width=25 ,
 )
 lbl_numbers_and_operator.grid(row=0 , column=0 , columnspan=4 , padx=(30 , 20) , pady=(20 , 20))
+
+def lbl_numbers_and_operator_func(input_):
+    lbl_numbers_and_operator['text'] += input_
 
 def show_number(number):
     global flag_1
@@ -22,9 +28,18 @@ def show_number(number):
     with open('memory.txt' , 'a') as memory:
         memory.write(str(number))
 def plus_operator():
-    lbl_numbers_and_operator['text'] += '+'
+    lbl_numbers_and_operator_func('+')
+    with open('memory.txt' , 'r') as memory:
+        get_memory = memory.read()
+        memory_list = get_memory.split('\n')
+    if memory_list[-1] == '':
+        memory_list = memory_list[:-2]
     with open('memory.txt' , 'a') as memory:
         memory.write('\n+\n')
+def minus_operator():
+    lbl_numbers_and_operator_func('-')
+    with open('memory.txt' , 'a') as memory:
+        memory.write('\n-\n')
 def equal_operator():
     global flag_1 
     flag_1 += 1
@@ -39,6 +54,12 @@ def equal_operator():
                 memory_list = memory_list[3:]
             elif memory_list[0] == '+':
                 finall_number += float(memory_list[1])
+                memory_list = memory_list[2:]
+            elif memory_list[1] == '-':
+                finall_number = float(memory_list[0]) - float(memory_list[2])
+                memory_list = memory_list[3:]
+            elif memory_list[0] == '-':
+                finall_number -= float(memory_list[1])
                 memory_list = memory_list[2:]
         except:
             memory_list = []
@@ -104,12 +125,13 @@ btn_number_6 = tk.Button(
 )
 btn_number_6.grid(row=2 , column=2 , sticky='ewns' )
 
-btn_mark_subtraction = tk.Button(
+btn_minus_operator = tk.Button(
     master=window ,
     text='-',
     height=3 ,
+    command= lambda:minus_operator(),
 )
-btn_mark_subtraction.grid(row=2 , column=3 , sticky='ewns' )
+btn_minus_operator.grid(row=2 , column=3 , sticky='ewns' )
 
 btn_number_1 = tk.Button(
     master=window ,
